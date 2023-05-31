@@ -1,7 +1,13 @@
 import './App.css';
 import { useEffect, useState } from 'react';
-import ProductCard from './components/ProductCard';
+
 import Header from "./components/Header";
+import {Routes, Route} from "react-router-dom";
+
+// pages
+import Home from './pages/Home';
+import Cart from './pages/Cart';
+import About from './pages/About';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -22,18 +28,12 @@ function App() {
     <div className="container">
       <Header />
 
+    <Routes>
+        <Route path='/' element={<Home products={products} />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/cart' element={<Cart />} />
+    </Routes>
     
-
-
-      <div className='row'>
-      {
-          products.map((product) => {
-            return (
-              <ProductCard product={product} />
-            )
-          })
-        }
-      </div>
     </div>
   );
 }
