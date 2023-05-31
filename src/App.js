@@ -1,5 +1,7 @@
 import './App.css';
 import { useEffect, useState } from 'react';
+import ProductCard from './components/ProductCard';
+import Header from "./components/Header";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -18,21 +20,16 @@ function App() {
 
   return (
     <div className="container">
+      <Header />
+
+    
+
+
       <div className='row'>
       {
           products.map((product) => {
             return (
-              <div className='col-md-3' style={{ marginBottom: "10px" }}>
-                <div className="card">
-                  <img src={product.image} className="card-img-top" alt="..." style={{width: "100%", height: "140px"}}  />
-                  <div className="card-body">
-                    <h5 className="card-title text-truncate">{product.title}</h5>
-                    <p className="card-text"> ${product.price}</p>
-                    <button  className="btn btn-primary mx-2">View Details</button>
-                    <button  className="btn btn-primary">Add to cart</button>
-                  </div>
-                </div>
-              </div>
+              <ProductCard product={product} />
             )
           })
         }
