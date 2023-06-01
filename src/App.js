@@ -8,6 +8,7 @@ import {Routes, Route} from "react-router-dom";
 import Home from './pages/Home';
 import Cart from './pages/Cart';
 import About from './pages/About';
+import ProductDetails from './pages/ProductDetails';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -31,9 +32,10 @@ function App() {
     <Routes>
         <Route path='/' element={<Home products={products} />} />
         <Route path='/about' element={<About />} />
+        <Route path='/products/:pid' element={<ProductDetails />} />
         <Route path='/cart' element={<Cart />} />
     </Routes>
-    
+  
     </div>
   );
 }
