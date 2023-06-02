@@ -11,7 +11,7 @@ function ProductCard(props) {
                     <h5 className="card-title text-truncate">{props.product.title}</h5>
                     <p className="card-text"> ${props.product.price}</p>
                     <Link to={"/products/" + props.product.id} className="btn btn-primary mx-2">View Details</Link>
-                    <button className="btn btn-primary">Add to cart</button>
+                    <button onClick={ () => { props.addToCart(props.product) } } className="btn btn-primary">Add to cart</button>
                 </div>
             </div>
         </div>

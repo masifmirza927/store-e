@@ -12,6 +12,7 @@ import ProductDetails from './pages/ProductDetails';
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
 
@@ -19,18 +20,24 @@ function App() {
       return res.json()
     }).then((data) => {
       setProducts(data);
-      console.log(data);
     })
 
   }, []);
 
+
+  const addToCart = (product) => {
+      const newAr = [...cart, product];
+      setCart(newAr);
+  }
+
+console.log(cart);
 
   return (
     <div className="container">
       <Header />
 
     <Routes>
-        <Route path='/' element={<Home products={products} />} />
+        <Route path='/' element={<Home addToCart={addToCart} products={products} />} />
         <Route path='/about' element={<About />} />
         <Route path='/products/:id' element={<ProductDetails />} />
         <Route path='/cart' element={<Cart />} />
