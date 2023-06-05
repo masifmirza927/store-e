@@ -1,7 +1,7 @@
 
 import { Link } from "react-router-dom";
 
-function Header() {
+function Header(props) {
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
             <div className="container-fluid">
@@ -18,7 +18,7 @@ function Header() {
                             <Link className="nav-link active" aria-current="page" to="/about">About</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" to="/cart">Cart</Link>
+                            <Link className="nav-link active" aria-current="page" to="/cart">Cart ({props.cart.length})</Link>
                         </li>
                     </ul>
                 </div>
