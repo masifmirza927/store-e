@@ -12,6 +12,7 @@ import Home from './pages/Home';
 import Cart from './pages/Cart';
 import About from './pages/About';
 import ProductDetails from './pages/ProductDetails';
+import CategoryProducts from './pages/CategoryProducts';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -31,9 +32,20 @@ function App() {
 
 
   const addToCart = (product) => {
-    const newAr = [...cart, product];
-    setCart(newAr);
-    notify();
+
+    const productExist = cart.find((item) => {
+      return item.id == product.id
+    })
+
+    if (productExist == undefined) {
+      const newAr = [...cart, product];
+      setCart(newAr);
+      notify();
+    }else {
+      alert("this product is already in cart")
+    }
+
+
   }
 
   return (
@@ -58,6 +70,7 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path='/products/:id' element={<ProductDetails />} />
         <Route path='/cart' element={<Cart />} />
+        <Route path='/category/products/:category' element={<CategoryProducts />} />
       </Routes>
 
     </div>
