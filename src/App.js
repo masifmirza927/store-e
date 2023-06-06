@@ -16,6 +16,8 @@ import CategoryProducts from './pages/CategoryProducts';
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+
   const [cart, setCart] = useState([]);
   const notify = () => toast.success("Product added to cart");
 
@@ -26,6 +28,7 @@ function App() {
       return res.json()
     }).then((data) => {
       setProducts(data);
+      setFilteredProducts(data);
     })
 
   }, []);
@@ -44,8 +47,13 @@ function App() {
     }else {
       alert("this product is already in cart")
     }
+  }
 
-
+  const searchProduct = (search) => {
+   const newAr = products.filter( (item) => {
+      return item.title.toLowerCase().includes(search.toLowerCase());
+   });
+   setFilteredProducts(newAr);
   }
 
   return (
@@ -64,9 +72,9 @@ function App() {
       />
 
       <Header cart={cart} />
-
+      <input type="text" onChange={ (event) => { searchProduct(event.target.value)} } />
       <Routes>
-        <Route path='/' element={<Home addToCart={addToCart} products={products} />} />
+        <Route path='/' element={<Home addToCart={addToCart} products={filteredProducts} />} />
         <Route path='/about' element={<About />} />
         <Route path='/products/:id' element={<ProductDetails />} />
         <Route path='/cart' element={<Cart />} />
